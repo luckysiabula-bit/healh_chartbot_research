@@ -35,7 +35,7 @@ function App() {
           text: data.response, 
           sender: 'bot',
           timestamp: data.timestamp || new Date().toISOString(),
-          confidence: data.confidence || 'medium'
+          confidence: data.confidence || 'high'
         }])
       } catch (error) {
         console.error('Error:', error)
