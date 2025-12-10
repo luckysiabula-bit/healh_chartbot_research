@@ -6,7 +6,7 @@ function App() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const API_URL = 'http://localhost:8000'
+  const API_URL = 'https://briley-prevocalic-carlo.ngrok-free.dev'
 
   const handleSend = async () => {
     if (input.trim() && !isLoading) {
@@ -22,10 +22,7 @@ function App() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            question: userMessage,
-            context: 'IDSR and Measles Detection Guidelines',
-            max_tokens: 256,
-            temperature: 0.7
+            message: userMessage
           })
         })
 
@@ -35,7 +32,7 @@ function App() {
 
         const data = await response.json()
         setMessages(prev => [...prev, { 
-          text: data.answer, 
+          text: data.response, 
           sender: 'bot',
           timestamp: data.timestamp || new Date().toISOString(),
           confidence: data.confidence || 'medium'
