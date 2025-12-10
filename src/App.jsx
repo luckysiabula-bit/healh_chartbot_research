@@ -22,10 +22,7 @@ function App() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            question: userMessage,
-            context: 'IDSR and Measles Detection Guidelines',
-            max_tokens: 256,
-            temperature: 0.7
+            message: userMessage
           })
         })
 
@@ -35,10 +32,10 @@ function App() {
 
         const data = await response.json()
         setMessages(prev => [...prev, { 
-          text: data.answer, 
+          text: data.response, 
           sender: 'bot',
-          timestamp: data.timestamp,
-          confidence: data.confidence
+          timestamp: data.timestamp || new Date().toISOString(),
+          confidence: data.confidence || 'medium'
         }])
       } catch (error) {
         console.error('Error:', error)
