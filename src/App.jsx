@@ -6,7 +6,7 @@ function App() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const API_URL = 'http://localhost:8000'
+  const API_URL = 'https://briley-prevocalic-carlo.ngrok-free.dev'
 
   const handleSend = async () => {
     if (input.trim() && !isLoading) {
