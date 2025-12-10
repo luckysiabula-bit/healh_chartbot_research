@@ -20,9 +20,13 @@ function App() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true'
           },
           body: JSON.stringify({
-            message: userMessage
+            question: userMessage,
+            context: "IDSR and Measles Detection Guidelines",
+            max_tokens: 256,
+            temperature: 0.7
           })
         })
 
@@ -32,7 +36,7 @@ function App() {
 
         const data = await response.json()
         setMessages(prev => [...prev, { 
-          text: data.response, 
+          text: data.answer, 
           sender: 'bot',
           timestamp: data.timestamp || new Date().toISOString(),
           confidence: data.confidence || 'high'
